@@ -24,9 +24,6 @@ namespace udevw {
   public:
     virtual ~Handle() = default;
 
-    Handle &operator=(const Handle&) = delete;
-    Handle &operator=(Handle&&) = delete;
-
     Udev &udev() const noexcept {
       return *_udev;
     };

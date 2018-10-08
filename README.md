@@ -4,14 +4,14 @@
 all of `libudev` with the exception of those functions that are marked as
 deprecated in the most recent version of the library.
 
-In general, `udevw` mirrors the `libudev` API exactly, with list handling being
-the one major exception. Wrapper equivalents of the `udev_*_get_*_list_entry`
-family of functions, which return C-style linked lists, instead return STL
-containers.
+In general, `udevw` mirrors the `libudev` API quite closely, with list handling
+being the one major exception. Wrapper equivalents of the
+`udev_*_get_*_list_entry` family of functions, which return C-style linked lists,
+instead return STL containers.
 
 ## Example Code
 
-```
+```C++
 #include <iostream>
 
 #include <udevw.hpp>

@@ -12,7 +12,7 @@ namespace udevw {
     {
     }
 
-    int get_error() {
+    int get_error() const {
       return _error;
     }
 

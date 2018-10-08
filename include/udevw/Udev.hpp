@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <libudev.h>
+
 namespace udevw {
 
   class Udev : public std::enable_shared_from_this<Udev> {
@@ -19,18 +20,23 @@ namespace udevw {
     }
 
   public:
-    struct udev *raw() const {
+    Udev(const Udev &) = delete;
+    Udev(Udev &&other) = delete;
+    Udev &operator=(const Udev &) = delete;
+    Udev &operator=(Udev &&other) = delete;
+
+    ResourceRawPtr raw() const {
       return _udev.get();
     }
 
     template <typename T>
     void set_userdata(T *userdata) const {
-      udev_set_userdata(_udev.get(), static_cast<void*>(userdata));
+      udev_set_userdata(raw(), static_cast<void*>(userdata));
     }
 
     template <typename T>
     void get_userdata() const {
-      return static_cast<T*>(udev_get_userdata(_udev.get()));
+      return static_cast<T*>(udev_get_userdata(raw()));
     }
 
   private:

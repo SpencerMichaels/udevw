@@ -4,7 +4,6 @@
 namespace udevw {
 
   using OptionalString = std::optional<std::string>;
-  using SequenceNumber = unsigned long long int;
 
   template <typename Ret, typename Raw>
   std::optional<Ret> raw_to_optional(Raw raw) {
