@@ -14,6 +14,8 @@
 
 namespace udevw {
 
+  using SequenceNumber = unsigned long long int;
+
   class Device : public Handle<struct udev_device, &udev_device_unref> {
   public:
     static Device create_from_syspath(UdevPtr udev, const std::string& syspath) {
