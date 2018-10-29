@@ -35,7 +35,7 @@ namespace udevw {
     }
 
     template <typename T>
-    void get_userdata() const {
+    T *get_userdata() const {
       return static_cast<T*>(udev_get_userdata(raw()));
     }
 
