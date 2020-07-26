@@ -49,12 +49,18 @@ namespace udevw {
     {
     }
 
-    Device get_parent() const {
-      return Device(udev().shared_from_this(), udev_device_get_parent(raw()));
+    std::optional<Device> get_parent() const {
+      if (udev_device_ref(udev_device_get_parent(raw())) == NULL)
+        return {};
+      else
+        return std::optional<Device>(std::in_place, udev().shared_from_this(), udev_device_ref(udev_device_get_parent(raw())));
     }
 
-    Device get_parent(const std::string& subsystem, const std::string& devtype) const {
-      return Device(udev().shared_from_this(), udev_device_get_parent_with_subsystem_devtype(raw(), subsystem.c_str(), devtype.c_str()));
+    std::optional<Device> get_parent(const std::string& subsystem, const std::string& devtype) const {
+      if (udev_device_ref(udev_device_get_parent_with_subsystem_devtype(raw(), subsystem.c_str(), devtype.c_str())) == NULL)
+        return {};
+      else
+        return std::optional<Device>(std::in_place, udev().shared_from_this(), udev_device_ref(udev_device_get_parent_with_subsystem_devtype(raw(), subsystem.c_str(), devtype.c_str())));
     }
 
     OptionalString get_devpath() const {
